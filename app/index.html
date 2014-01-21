@@ -1,0 +1,189 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>HTML5 Image Puzzle</title>
+        <meta name="description" content="Learning HTML5 by doing. We've built a HTML5 puzzle game and have learned the following HTML5 features: Canvas, Image manipulation, RequestAnimationFrame, Fullscreen API, Application Cache API (Offline browsing), Audio API, Touch support">
+        <meta name="viewport" content="width=device-width">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <!-- build:css styles/vendor.css -->
+        <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <!-- endbower -->
+        <!-- endbuild -->
+        <!-- build:css(.tmp) styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+        <script src="bower_components/modernizr/modernizr.js"></script>
+
+    </head>
+    <body id="body">
+        <!--[if lt IE 10]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+
+        <div class="container">
+            <div class="header">
+                <ul class="nav nav-pills pull-right">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="http://emersonestrella.appspot.com/#about" target="_blank">About</a></li>
+                    <li><a href="http://emersonestrella.appspot.com/#connect" target="_blank">Contact</a></li>
+                </ul>
+                <h3 class="text-muted">HTML5 Image Puzzle</h3>
+            </div>
+
+            <div class="jumbotron">
+                <h1>HTML5 Image Puzzle</h1>
+                <p class="lead">Learning HTML5 by doing!</p>
+                <p>We've built a HTML5 puzzle game for learn the following HTML5 features:</p>
+                <ul class="list-group">
+                  <li class="list-group-item">Canvas</li>
+                  <li class="list-group-item">Image manipulation</li>
+                  <li class="list-group-item">Application Cache API (Offline browsing)</li>
+                  <li class="list-group-item">Audio API</li>
+                  <li class="list-group-item">Touch support</li>
+                </ul>
+                <p><a id="play" class="btn btn-lg btn-success">PLAY</a></p>
+            </div>
+
+            <div class="row marketing">
+                <div class="col2-lg-6">
+                    <h4>Canvas, image manipulation, and RequestAnimationFrame</h4>
+                    <p>The game runs on canvas. It loads an image and slice it in a few pieces. The RequestAnimationFrame provide power efficient and smooth animations.</p>
+
+                    <h4>Audio, and fullscreen APIs</h4>
+                    <p>Background music and sound effects using the Audio API. Also fullscreen mode support.</p>
+
+                    <h4>Application Cache/Offline browsing support</h4>
+                    <p>You can keep playing even when you go offline.</p>
+                </div>
+            </div>
+
+            <div class="footer">
+                <p>Built with ♥ by EDSE!</p>
+            </div>
+
+        </div>
+
+        <!-- Game modal -->
+        <div id="modal-success" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Yes, you did it!</h4>
+              </div>
+              <div class="modal-body">
+                <p><span id="stage" class="label label-success">Stage 1 completed!</span></p>
+                <p><span id="pieces" class="label label-warning">4 pieces in 30s</span></p>
+                <hr />
+              </div>
+              <div class="modal-footer">
+                <button id="next" type="button" class="btn btn-primary">Next Stage</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <!-- Game canvas -->
+        <div id="game">
+          <canvas id="canvas" style="display:none"></canvas>
+          <canvas id="canvas_bg" style="display:none"></canvas>
+        </div>
+
+        <!-- DEBUG/IMAGES -->
+        <div id="debug" style="display:none">
+
+          <div>
+            <img src="images/puzzles/01.png" id="img01" />
+            <img src="images/puzzles/02.png" id="img02" />
+            <img src="images/puzzles/03.png" id="img03" />
+            <img src="images/puzzles/04.png" id="img04" />
+            <img src="images/puzzles/05.png" id="img05" />
+            <img src="images/puzzles/06.png" id="img06" />
+            <img src="images/puzzles/07.png" id="img07" />
+            <img src="images/puzzles/08.png" id="img08" />
+            <img src="images/puzzles/09.png" id="img09" />
+            <img src="images/puzzles/10.png" id="img10" />
+            <img src="images/puzzles/11.png" id="img11" />
+            <img src="images/puzzles/12.png" id="img12" />
+          </div>
+          
+          <div>
+            pieces: <input type="text" name="p" id="p" />
+            pieces placed: <input type="text" name="pp" id="pp" />
+            lines: <input type="text" name="l" id="l" />
+            Pieces width: <input type="text" name="pw" id="pw" />
+            Pieces height: <input type="text" name="ph" id="ph" />
+          </div>
+          <div>
+            moving: <input type="text" name="moving" id="moving" />
+            over: <input type="text" name="over" id="over" />
+            selected: <input type="text" name="selected" id="selected" />
+          </div>
+          <div>
+            x: <input type="text" name="mx" id="mx" />
+            y: <input type="text" name="my" id="my" />
+          </div>
+          <div>
+            p1 x: <input type="text" name="px" id="px" />
+            p1 y: <input type="text" name="py" id="py" />
+          </div>
+          <div>
+            h1 x: <input type="text" name="hx" id="hx" />
+            h1 y: <input type="text" name="hy" id="hy" />
+          </div>
+          <div>
+            h2 x: <input type="text" name="hx2" id="hx2" />
+            h2 y: <input type="text" name="hy2" id="hy2" />
+          </div>
+        </div>
+        <!-- /DEBUG -->
+
+        <!-- build:js scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="bower_components/jquery/jquery.js"></script>
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-31142108-1');ga('send','pageview');
+        </script>
+
+        <!-- build:js scripts/plugins.js -->
+        <script src="bower_components/bootstrap/js/affix.js"></script>
+        <script src="bower_components/bootstrap/js/alert.js"></script>
+        <script src="bower_components/bootstrap/js/dropdown.js"></script>
+        <script src="bower_components/bootstrap/js/tooltip.js"></script>
+        <script src="bower_components/bootstrap/js/modal.js"></script>
+        <script src="bower_components/bootstrap/js/transition.js"></script>
+        <script src="bower_components/bootstrap/js/button.js"></script>
+        <script src="bower_components/bootstrap/js/popover.js"></script>
+        <script src="bower_components/bootstrap/js/carousel.js"></script>
+        <script src="bower_components/bootstrap/js/scrollspy.js"></script>
+        <script src="bower_components/bootstrap/js/collapse.js"></script>
+        <script src="bower_components/bootstrap/js/tab.js"></script>
+        <!-- endbuild -->
+
+        <!-- build:js({app,.tmp}) scripts/main.js -->
+        <script src="scripts/mouse.js"></script>
+        <script src="scripts/point2D.js"></script>
+        <script src="scripts/piece.js"></script>
+        <script src="scripts/holder.js"></script>
+        <script src="scripts/game.js"></script>
+        <script src="scripts/init.js"></script>
+        <!-- endbuild -->
+
+</body>
+</html>
