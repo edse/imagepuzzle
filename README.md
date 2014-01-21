@@ -7,12 +7,30 @@ Learning HTML5 by doing! I've built a HTML5 puzzle game for learn the following 
 Install
 ===========
 
-1. npm update
+1. Clone the repository
+  
+  $ git clone git@github.com:edse/imagepuzzle.git project_folder
 
-2. bower update
+2. Install Node
 
-3. grunt build
+  Visit: http://nodejs.org/download
+
+3. Install/Update Node modules 
+
+  $ cd project_folder
+  $ npm update
+
+4. Install/Update Bower components
+
+  $ bower update
+
+4. Bulid the project with Grunt
+
+  $ grunt build
 
 
 
+==================================
+Built with ♥ by EDSE!
 
+http://emersonestrella.appspot.com
