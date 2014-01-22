@@ -1,33 +1,36 @@
 Image Puzzle
-===========
+==================================
 
 Learning HTML5 by doing! I've built a HTML5 puzzle game for learn the following HTML5 features: Canvas, Image manipulation, Application Cache API (Offline browsing), Audio API, Touch support
 
 
-Install
-===========
+Setup & Buld
+==================================
 
-1. Clone the repository
+1. Install Node
+
+  Visit: http://nodejs.org/download
+
+
+2. Clone the repository
   
   $ git clone git@github.com:edse/imagepuzzle.git project_folder
 
-2. Install Node
-
-  Visit: http://nodejs.org/download
 
 3. Install/Update Node modules 
 
   $ cd project_folder
-  $ npm update
+  $ npm install
+
 
 4. Install/Update Bower components
 
   $ bower update
 
-4. Bulid the project with Grunt
+
+5. Bulid the project with Grunt
 
   $ grunt build
-
 
 
 ==================================
