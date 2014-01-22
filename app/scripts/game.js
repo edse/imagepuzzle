@@ -22,6 +22,9 @@ Game.prototype.loadAssets = function() {
   document.getElementById('canvas').height = window.innerHeight;
   document.getElementById('canvas_bg').width = window.innerWidth;
   document.getElementById('canvas_bg').height = window.innerHeight;
+  
+  document.getElementById('game').height = window.innerHeight;
+  
   console.log("canvas: "+window.innerWidth+", "+window.innerHeight);
   //
   
@@ -131,6 +134,8 @@ Game.prototype.apply_scale = function(){
   document.getElementById('canvas').height = window.innerHeight;
   document.getElementById('canvas_bg').width = window.innerWidth;
   document.getElementById('canvas_bg').height = window.innerHeight;
+
+  $("#game").css('height', window.innerHeight);
 
   var rw = document.getElementById('canvas').width / this.original_width;
   var rh = document.getElementById('canvas').height / this.original_height;
@@ -289,16 +294,16 @@ Game.prototype.render = function() {
     //Game Over
     if(this.remaining_time <= 0){
       this.remaining_time = 0;
-      window.m.pauseGame();
+      pauseGame();
       if(confirm('Timeup! Try again')){
         this.is_over = false;
         this.init();
-        window.m.startGame();
+        startGame();
       }
     }
     else{
       if(this.is_over){
-        window.m.pauseGame();
+        pauseGame();
         $('#stage').html("Stage "+this.stage+" completed!");
         $('#pieces').html(this.num_lines*this.num_lines+" pieces in "+(this.time_to_complete-this.remaining_time)+"s");
         $('#modal-success').modal();
@@ -379,5 +384,5 @@ Game.prototype.nextStage = function() {
   this.stage++;
   this.num_lines++;
   this.init();
-  window.m.startGame();
+  startGame();
 };

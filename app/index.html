@@ -48,7 +48,11 @@
                   <li class="list-group-item">Audio API</li>
                   <li class="list-group-item">Touch support</li>
                 </ul>
-                <p><a id="play" class="btn btn-lg btn-success">PLAY</a></p>
+                <p>
+                  <button id="play-btn-lg" type="button" class="btn btn-success btn-lg">
+                    <span class="glyphicon glyphicon-play"></span> PLAY
+                  </button>
+                </p>
             </div>
 
             <div class="row marketing">
@@ -69,6 +73,43 @@
             </div>
 
         </div>
+        
+        <ul class="nav nav-pills abs">
+          <li id="home">
+            <button type="button" class="btn btn-xs btn-default active"> <span class="glyphicon glyphicon-home"></span> Home</button>
+          </li>
+          <li id="play">
+            <button id="btn-play" type="button" class="btn btn-xs btn-default"> <span class="glyphicon glyphicon-play"></span> Play</button>
+          </li>
+          <li id="pause" class="control">
+            <button id="btn-pause" type="button" class="btn btn-xs btn-default"> <span class="glyphicon glyphicon-pause"></span> Pause</button>
+          </li>
+          <li id="fullscreen" class="control">
+            <button id="btn-fullscreen" type="button" class="btn btn-xs btn-default"> <span class="glyphicon glyphicon-fullscreen"></span> Fullscreen</button>
+          </li>
+          <li id="exitfullscreen" class="control">
+            <button id="btn-exitfullscreen" type="button" class="btn btn-xs btn-default"> <span class="glyphicon glyphicon-resize-small"></span> Exit Fullscreen</button>
+          </li>
+          <li id="bgm" class="control">
+            <button id="btn-bmg-on" type="button" class="btn btn-xs btn-default"> <span class="glyphicon glyphicon-volume-up"></span> BGM On</button>
+          </li>
+          <li id="bgmoff" class="control">
+            <button id="btn-bmg-off" type="button" class="btn btn-xs btn-default"> <span class="glyphicon glyphicon-volume-off"></span> BGM Off</button>
+          </li>
+          <li id="sfx" class="control">
+            <button id="btn-sfx-on" type="button" class="btn btn-xs btn-default"> <span class="glyphicon glyphicon-volume-up"></span> SFX On</button>
+          </li>
+          <li id="sfxoff" class="control">
+            <button id="btn-sfx-off" type="button" class="btn btn-xs btn-default"> <span class="glyphicon glyphicon-volume-off"></span> SFX Off</button>
+          </li>
+          <li id="autosnap" class="control">
+            <button id="btn-autosnap-on" type="button" class="btn btn-xs btn-default"> <span class="glyphicon glyphicon-remove"></span> Auto-Snap On</button>
+          </li>
+          <li id="autosnapoff" class="control">
+            <button id="btn-autosnap-off" type="button" class="btn btn-xs btn-default"> <span class="glyphicon glyphicon-ok"></span> Auto-Snap Off</button>
+          </li>
+        </ul>
+
 
         <!-- Game modal -->
         <div id="modal-success" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

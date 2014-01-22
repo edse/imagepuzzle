@@ -88,3 +88,18 @@ body {
         border-bottom: 0;
     }
 }
+
+#pause, #bgm, #sfx, #bgmoff, #sfxoff, #fullscreen, #exitfullscreen, #autosnap, #autosnapoff {
+  display: none;
+} 
+
+.abs {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  display: none;
+}
+
+#game {
+  overflow: hidden;
+}

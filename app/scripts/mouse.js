@@ -132,7 +132,7 @@ Mouse.prototype.mousemove = function(e) {
   yy = yy/this.game.scale;
   
   this.moving = true;
-  window.m.interv();
+  interv();
   this.x = xx;
   this.y = yy;
   this.event = e;

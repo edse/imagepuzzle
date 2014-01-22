@@ -41,7 +41,6 @@ if(Modernizr.fullscreen){
       }
       p++;
     }
-  
   }
 }
 
@@ -50,21 +49,23 @@ var game = new Game();
 var interval = null;
 var gameInterval = null;
 game.debug = false;
-window.m = {
+m = {
   game : game
 };
-window.m.interv = function() {
-  interval = setTimeout("window.m.game.mouse.moving = false; document.getElementById('moving').value = false; window.m.intervClear();", 500);
+
+interv = function() {
+  interval = setTimeout("game.mouse.moving = false; document.getElementById('moving').value = false; intervClear();", 500);
 };
-window.m.intervClear = function() {
+intervClear = function() {
   clearInterval(interval)
 };
-window.m.stopGame = function() {
+
+stopGame = function() {
   clearInterval(gameInterval);
   
   game.started = false;
-  window.m.stopSFX();
-  window.m.stopBGM();
+  stopSFX();
+  stopBGM();
   window.cancelAnimationFrame(game.interval);
 
   $('#home').addClass('active');
@@ -76,90 +77,90 @@ window.m.stopGame = function() {
   $('.content').show();
 };
 
-window.m.startGame = function() {
-  $('#body').animate({ scrollTop: 0 }, 'fast');
+startGame = function() {
   clearInterval(gameInterval);
   gameInterval = setInterval(function() { game.remaining_time--; },1000);
   game.started = true;
   //resizeGame();
-  window.m.startSFX();
-  window.m.startBGM();
+  startSFX();
+  startBGM();
   loop();
   $('#home').removeClass('active');
-  $('#canvas, .control').show();
+  $('#canvas, .control, .abs').show();
   $('.content, #play, #exitfullscreen, #bgm, #sfx, #autosnap').hide();
   $('.container, .footer').hide();
   $('#body').css('padding', '0px');
   $('#body').css('margin', '0px');
 };
 
-window.m.pauseGame = function() {
+pauseGame = function() {
   clearInterval(gameInterval);
   game.started = false;
   window.cancelAnimationFrame(game.interval);
 
-  $('#play').show();
   $('.control').hide();  
+  $('#play').show();
+  $('#btn-play').show();
 };
 
-window.m.stopSFX = function() {
-  window.m.game.drip.volume = 0.0;
-  window.m.game.twang.volume = 0.0;
-  window.m.game.drip.pause();
-  window.m.game.twang.pause();
+stopSFX = function() {
+  game.drip.volume = 0.0;
+  game.twang.volume = 0.0;
+  game.drip.pause();
+  game.twang.pause();
   $('#sfxoff').hide();
   $('#sfx').show();
 };
 
-window.m.startSFX = function() {
-  window.m.game.drip.volume = 1.0;
-  window.m.game.twang.volume = 1.0;
+startSFX = function() {
+  game.drip.volume = 1.0;
+  game.twang.volume = 1.0;
   $('#sfxoff').show();
   $('#sfx').hide();
 };
 
-window.m.stopBGM = function() {
-  window.m.game.bgm.volume = 0.0;
-  window.m.game.bgm.pause();
+stopBGM = function() {
+  game.bgm.volume = 0.0;
+  game.bgm.pause();
   $('#bgmoff').hide();
   $('#bgm').show();
 };
 
-window.m.startBGM = function() {
-  window.m.game.bgm.volume = 1.0;
-  window.m.game.bgm.play();
+startBGM = function() {
+  game.bgm.volume = 1.0;
+  game.bgm.play();
   $('#bgmoff').show();
   $('#bgm').hide();
 };
 
-window.m.autoSnap = function() {
-  window.m.game.auto_snap = true;
+autoSnap = function() {
+  game.auto_snap = true;
   $('#autosnapoff').show();
   $('#autosnap').hide();
 };
 
-window.m.autoSnapOff = function() {
-  window.m.game.auto_snap = false;
+autoSnapOff = function() {
+  game.auto_snap = false;
   $('#autosnapoff').hide();
   $('#autosnap').show();
 };
 
-window.m.fullscreen = function() {
+fullscreen = function() {
   RunPrefixMethod(game.canvas, "RequestFullScreen");
 };
 
-window.m.exitfullscreen = function() {
+exitfullscreen = function() {
   RunPrefixMethod(document, 'CancelFullScreen');
 };
 
 function start() {
-  window.m.startGame();
+  startGame();
 }
 function stop() {
-  window.m.stopGame();
+  stopGame();
 }
 function pause() {
-  window.m.pauseGame();
+  pauseGame();
 }
 
 function loop() {
@@ -216,25 +217,52 @@ window.addEventListener('resize', resizeGame, false);
 window.addEventListener('orientationchange', resizeGame, false);
 //
 
-$(function() {
-  $("#test").popover({
-    animation: true,
-    placement: 'right',
-    delay: { show: 200, hide: 2000 }
-  });
-  
+$(function() {  
   $(".popover-test").popover();
-  $(".tooltip-test").tooltip();
-  
-  $("#promo").alert();
   
   $("#next").click(function() {
     game.nextStage();
     $('#modal-success').modal('hide');
   });
   
-  $("#play").click(function() {
+  $("#play, #btn-play, #play-btn-lg").click(function() {
     start();
+  });
+  
+  $("#btn-pause").click(function() {
+    pause();
+  });
+  
+  $("#btn-fullscreen").click(function() {
+    fullscreen();
+  });
+  
+  $("#btn-exitfullscreen").click(function() {
+    exitfullscreen();
+  });
+  
+  $("#btn-bmg-on").click(function() {
+    startBGM();
+  });
+  
+  $("#btn-bmg-off").click(function() {
+    stopBGM();
+  });
+  
+  $("#btn-sfx-on").click(function() {
+    startSFX();
+  });
+  
+  $("#btn-sfx-off").click(function() {
+    stopSFX();
+  });
+  
+  $("#btn-autosnap-on").click(function() {
+    autoSnap();
+  });
+  
+  $("#btn-autosnap-off").click(function() {
+    autoSnapOff();
   });
   
 });
