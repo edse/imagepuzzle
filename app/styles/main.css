@@ -103,3 +103,9 @@ body {
 #game {
   overflow: hidden;
 }
+
+@media (max-width: 464px) {
+  .abs {
+    display: none!important;
+  }
+}
