@@ -30,9 +30,9 @@
         <div class="container">
             <div class="header">
                 <ul class="nav nav-pills pull-right">
-                    <li class="active"><a href="/">Home</a></li>
                     <li><a href="http://emersonestrella.appspot.com/#about" target="_blank">About</a></li>
                     <li><a href="http://emersonestrella.appspot.com/#connect" target="_blank">Contact</a></li>
+                    <li class="active"><a id="play-top" href="#"> <span class="glyphicon glyphicon-play"></span> Play</a></li>
                 </ul>
                 <h3 class="text-muted">HTML5 Image Puzzle</h3>
             </div>
@@ -76,7 +76,7 @@
         
         <ul class="nav nav-pills abs">
           <li id="home">
-            <button type="button" class="btn btn-xs btn-default active"> <span class="glyphicon glyphicon-home"></span> Home</button>
+            <button id="btn-home" type="button" class="btn btn-xs btn-default"> <span class="glyphicon glyphicon-home"></span> Home</button>
           </li>
           <li id="play">
             <button id="btn-play" type="button" class="btn btn-xs btn-default"> <span class="glyphicon glyphicon-play"></span> Play</button>
@@ -110,7 +110,6 @@
           </li>
         </ul>
 
-
         <!-- Game modal -->
         <div id="modal-success" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -122,7 +121,6 @@
               <div class="modal-body">
                 <p><span id="stage" class="label label-success">Stage 1 completed!</span></p>
                 <p><span id="pieces" class="label label-warning">4 pieces in 30s</span></p>
-                <hr />
               </div>
               <div class="modal-footer">
                 <button id="next" type="button" class="btn btn-primary">Next Stage</button>
@@ -139,6 +137,29 @@
 
         <!-- DEBUG/IMAGES -->
         <div id="debug" style="display:none">
+
+          <div>
+            <audio id="audio-drip" controls>
+              <source type="audio/ogg" src="audio/final/drip.ogg">
+              <source type="audio/mpeg" src="audio/final/drip.mp3">
+              Your browser does not support the audio element.
+            </audio>
+            <audio id="audio-twang" controls>
+              <source type="audio/ogg" src="audio/final/twang2.ogg">
+              <source type="audio/mpeg" src="audio/final/twang2.mp3">
+              Your browser does not support the audio element.
+            </audio>
+            <audio id="audio-bgm" controls>
+              <source type="audio/ogg" src="audio/final/Pictures-Sleep_on_soft_sheets.ogg">
+              <source type="audio/mpeg" src="audio/final/Pictures-Sleep_on_soft_sheets.mp3">
+              Your browser does not support the audio element.
+            </audio>
+            <audio id="audio-chimes" controls>
+              <source type="audio/ogg" src="audio/final/chimes.ogg">
+              <source type="audio/mpeg" src="audio/final/chimes.mp3">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
 
           <div>
             <img src="images/puzzles/01.png" id="img01" />

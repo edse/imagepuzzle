@@ -129,6 +129,8 @@ stopBGM = function() {
 startBGM = function() {
   game.bgm.volume = 1.0;
   game.bgm.play();
+  //game.bgm.start(0);
+  //document.getElementById('audio-bgm').play();
   $('#bgmoff').show();
   $('#bgm').hide();
 };
@@ -263,6 +265,14 @@ $(function() {
   
   $("#btn-autosnap-off").click(function() {
     autoSnapOff();
+  });
+
+  $("#play-top").click(function() {
+    start();
+  });
+
+  $("#btn-home").click(function() {
+    self.location.href="./index.html";
   });
   
 });

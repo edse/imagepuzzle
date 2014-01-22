@@ -46,75 +46,15 @@ Game.prototype.loadAssets = function() {
   if(this.random_image<10)
     this.random_image = new String("0"+this.random_image);
   
-  this.assets = Array(/*{
-      type: "image",
-      src: "images/puzzles/01.png",
-      slug: "img01"
-    },{
-      type: "image",
-      src: "images/puzzles/02.png",
-      slug: "img02"
-    },{
-      type: "image",
-      src: "images/puzzles/03.png",
-      slug: "img03"
-    },{
-      type: "image",
-      src: "images/puzzles/04.png",
-      slug: "img04"
-    },{
-      type: "image",
-      src: "images/puzzles/05.png",
-      slug: "img05"
-    },{
-      type: "image",
-      src: "images/puzzles/06.png",
-      slug: "img06"
-    },{
-      type: "image",
-      src: "images/puzzles/07.png",
-      slug: "img07"
-    },{
-      type: "image",
-      src: "images/puzzles/08.png",
-      slug: "img08"
-    },{
-      type: "image",
-      src: "images/puzzles/09.png",
-      slug: "img09"
-    },{
-      type: "image",
-      src: "images/puzzles/10.png",
-      slug: "img10"
-    },{
-      type: "image",
-      src: "images/puzzles/11.png",
-      slug: "img11"
-    },{
-      type: "image",
-      src: "images/puzzles/12.png",
-      slug: "img12"
-    },*/{
-      type: "audio",
-      src: "audio/final/drip",
-      slug: "drip"
-    },{
-      type: "audio",
-      src: "audio/final/twang2",
-      slug: "twang"
-    },{
-      type: "audio",
-      src: "audio/final/Pictures-Sleep_on_soft_sheets",
-      slug: "bgm"
-    },{
-      type: "audio",
-      src: "audio/final/chimes",
-      slug: "chimes"
-    }
-  );
+  this.drip = document.getElementById("audio-drip");
+  this.twang = document.getElementById("audio-twang");
+  this.bgm = document.getElementById("audio-bgm");
+  this.chimes = document.getElementById("chimes");
     
-  this.items_to_load = this.assets.length;
-  loadAssets(this, this.assets);
+  //this.items_to_load = this.assets.length;
+  //loadAssets(this, this.assets);
+  this.items_to_load = 1;
+  this.loaded_items = 1;
 
   //eval("this.img = this.img"+this.random_image);
   eval("this.img = document.getElementById('img"+this.random_image+"');");
@@ -205,9 +145,7 @@ Game.prototype.placePieces = function(){
     this.pieces.push(temp);
     console.log('pieces array length>>'+this.pieces.length);
   }
-  if(this.chimes.currentTime != 0)
-    this.chimes.currentTime = 0;
-  this.chimes.play();
+  document.getElementById('audio-chimes').play();
 };
 
 Game.prototype.placeHolders = function(){
