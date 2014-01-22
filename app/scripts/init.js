@@ -275,4 +275,6 @@ $(function() {
     self.location.href="./index.html";
   });
   
+  $("#modal-success").removeClass('show');
+  
 });

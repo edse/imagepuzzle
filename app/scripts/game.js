@@ -100,6 +100,8 @@ Game.prototype.init = function(){
   console.log(this.img.width+','+this.img.height);
   this.img_width = this.img.width;
   this.img_height = this.img.height;
+  if(this.img_width > document.getElementById('canvas').width)
+    this.img_width = (document.getElementById('canvas').width/100)*90;
   this.num_pieces = this.num_lines * this.num_lines;
   this.piece_width = this.img_width / this.num_lines;
   this.piece_height = this.img_height / this.num_lines;
